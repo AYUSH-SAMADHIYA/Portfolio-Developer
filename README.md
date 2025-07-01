@@ -34,7 +34,6 @@ A Flask-based web app that helps users generate professional-looking portfolio p
 ![Generated Portfolio](./Screenshots/3.png)
 
 
-> 💡 Place screenshots inside a folder named `screenshots/` in the root directory of your project.
 
 ---
 
