@@ -19,7 +19,7 @@ A Flask-based web app that helps users generate professional-looking portfolio p
 
 ### 🟣 Landing Page
 
-![Landing Page](./Screenshots/l.png)
+![Landing Page](./Screenshots/1.png)
 
 ### 🧾 Example Prompt Input
 
