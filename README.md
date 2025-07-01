@@ -19,15 +19,20 @@ A Flask-based web app that helps users generate professional-looking portfolio p
 
 ### 🟣 Landing Page
 
-![Landing Page](l.png)
+![Landing Page](./Screenshots/l.png)
 
 ### 🧾 Example Prompt Input
 
-![Prompt Input](screenshots/example_prompt.png)
+![Prompt Input](./Screenshots/4.png)
 
 ### 🧑‍💻 Generated Portfolio Page (One of the Templates)
 
-![Generated Portfolio](screenshots/portfolio_output.png)
+![Generated Portfolio](./Screenshots/2.png)
+
+### 🧑‍💻 Generated Portfolio Page (One of the Templates)
+
+![Generated Portfolio](./Screenshots/3.png)
+
 
 > 💡 Place screenshots inside a folder named `screenshots/` in the root directory of your project.
 
