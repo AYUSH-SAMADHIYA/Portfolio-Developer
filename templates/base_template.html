@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/' + css_file) }}">
+</head>
+<body>
+    <header>
+        <h1>{{ name }}</h1>
+    </header>
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>{{ introduction }}</p>
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                {% for skill in skills %}
+                    <li class="skill-div">{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <ul>
+                {% for project in projects %}
+                    <li class="project-div">
+                        <strong>{{ project.heading }}</strong>: {{ project.details }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section id="education">
+            <h2>Education</h2>
+            <ul>
+                {% for education in educations %}
+                    <li class="education-div">
+                        <strong>{{ education.heading }}</strong>: {{ education.details }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <ul>
+                {% for contact in contacts %}
+                    <li class="contact-div">
+                        <strong>{{ contact.heading }}</strong>: {{ contact.details }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

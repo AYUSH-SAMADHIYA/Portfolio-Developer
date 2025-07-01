@@ -1,0 +1,143 @@
+/* General styles */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    padding: 100px;
+    width: 1200px;
+    
+    margin: 0 auto;
+    background-color: #000000; /* Dark background */
+    color: #ffffff; /* Light text color */
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #00000029; /* Green color */
+    color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+    border-radius: 30px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
+    /* transition: transform 0.3s ease-in-out; */
+}
+
+/* header:hover {
+    transform: scale(1.05);
+} */
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: auto;
+    font-size: x-large;
+}
+
+
+/* Main container */
+main {
+    background-color: #38383829; /* Green color */
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    border-radius: 30px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); */
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #ffffff0a; /* Green color */
+    border-radius: 30px;
+    
+
+
+}
+
+/* Section headings */
+section h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ffffff; /* Green color for headings */
+    /* border-bottom: 2px solid #ffffff; Full underline in green */
+    padding-bottom: 5px;
+}
+
+/* List styles */
+section ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-items: center;
+}
+
+section li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;;
+    width: 700px;
+    color: #ffffff; /* Light grey */
+    padding: 10px;
+    background-color: #efefef; /* Slightly darker background for items */
+    border-radius: 20px;
+    margin: 15px ;
+    font-size:x-large;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+section li:hover {
+    transform: scale(1.02);
+    /* background-color: #7a7d7a; */
+}
+
+/* Specific section styles */
+.skill-div, .contact-div, .education-div, .project-div {
+    padding: 10px;
+    background-color: #000000;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.skill-div:hover, .contact-div:hover, .education-div:hover, .project-div:hover {
+    /* transform: scale(1.02);
+    background-color: #6e716e; */
+    transform: scale(1.1);
+    color: #ffffff;
+    box-shadow: 0 0 20px #ffffff70;
+
+    
+}
+
+/* Name section specific styling */
+section#name h2 {
+    color: #e1ece3; /* White text color */
+    border-bottom-color: #e1ece3; /* White underline */
+}
