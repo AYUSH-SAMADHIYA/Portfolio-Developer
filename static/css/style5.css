@@ -1,0 +1,90 @@
+/* Style 5: Elegant & Minimal */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Raleway:wght@400;500&display=swap');
+
+:root {
+    --primary-color: #8d8d8d; /* Muted gray */
+    --secondary-color: #ffffff;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --card-bg-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: var(--card-bg-color);
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+main {
+    padding: 2rem;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 3rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+section h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.skill-div {
+    display: inline-block;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.5rem 1.5rem;
+    margin: 0.4rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-div, .education-div, .contact-div {
+    line-height: 1.8;
+}
+
+.project-div strong, .education-div strong, .contact-div strong {
+    font-weight: 500;
+    color: #000;
+}

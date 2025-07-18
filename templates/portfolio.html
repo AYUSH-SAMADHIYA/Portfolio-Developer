@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.name }}'s Portfolio</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + css_file) }}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;700&family=Lora:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=Playfair+Display:wght@400;700&family=Oswald:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: {{ primary_color|default('#2c3e50') }};
+            --secondary-color: {{ secondary_color|default('#ecf0f1') }};
+        }
+        body {
+            font-family: {{ font_family|default("'Poppins', sans-serif")|safe }};
+        }
+        {% if 'style1.css' in css_file or 'style2.css' in css_file %}
+        body > header {
+            display: none !important;
+        }
+        {% else %}
+        header {
+            background-color: var(--primary-color) !important;
+            color: var(--secondary-color) !important;
+        }
+        header h1 {
+            color: var(--secondary-color) !important;
+        }
+        {% endif %}
+
+        .download-btn {
+            text-align: right;
+            margin: 1rem;
+        }
+        .download-btn button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PDF Download Button -->
+    <div class="download-btn">
+        <form method="POST" action="{{ url_for('download_pdf') }}">
+            <input type="hidden" name="data" value="{{ data | tojson | safe }}">
+            <input type="hidden" name="css_file" value="{{ css_file }}">
+            <input type="hidden" name="primary_color" value="{{ primary_color }}">
+            <input type="hidden" name="secondary_color" value="{{ secondary_color }}">
+            <input type="hidden" name="font_family" value="{{ font_family }}">
+            <button type="submit">Download PDF</button>
+        </form>
+    </div>
+
+    <header>
+        <h1>{{ data.name }}</h1>
+    </header>
+
+    <main>
+        {% if 'style1.css' in css_file %}
+            <header><h1>{{ data.name }}</h1></header>
+        {% endif %}
+
+        <section id="introduction">
+            <h2>Introduction</h2>
+            {% if 'style2.css' in css_file %}
+                <p>{{ data.name }}</p>
+                <div class="intro-paragraph" style="text-align: center; max-width: 700px; margin: 1rem auto 0;">
+                    {{ data.introduction }}
+                </div>
+            {% else %}
+                <p>{{ data.introduction }}</p>
+            {% endif %}
+        </section>
+
+        {% if data.contacts %}
+        <section id="contact">
+            <h2>Contact</h2>
+            <ul>
+                {% for contact in data.contacts %}
+                    <li class="contact-div"><strong>{{ contact.heading }}</strong>: {{ contact.details }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if data.skills %}
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                {% for skill in data.skills %}
+                    <li class="skill-div">{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if data.experience %}
+        <section id="experience">
+            <h2>Experience</h2>
+            <ul>
+                {% for exp in data.experience %}
+                    <li class="experience-div"><strong>{{ exp.heading }}</strong>: {{ exp.details }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if data.projects %}
+        <section id="projects">
+            <h2>Projects</h2>
+            <ul>
+                {% for project in data.projects %}
+                    <li class="project-div"><strong>{{ project.heading }}</strong>: {{ project.details }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if data.education %}
+        <section id="education">
+            <h2>Education</h2>
+            <ul>
+                {% for edu in data.education %}
+                    <li class="education-div"><strong>{{ edu.heading }}</strong>: {{ edu.details }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>

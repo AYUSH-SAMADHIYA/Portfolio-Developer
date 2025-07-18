@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #4C4C9D;         /* Deep lavender */
+  --text-color: #243b53;            /* Dark teal-blue for body */
+  --border-color: #D0D6F9;          /* Light periwinkle for lines */
+  --skill-color: #568EA6;           /* Muted teal */
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background: #fff;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 2rem;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  border-bottom: 3px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+section {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 0.8rem;
+}
+
+.skill-div {
+  display: inline-block;
+  border: 1px solid var(--skill-color);
+  color: var(--skill-color);
+  background: transparent;
+  padding: 0.4rem 0.8rem;
+  margin: 0.3rem;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.project-div,
+.education-div,
+.contact-div {
+  padding-left: 1rem;
+}
+
+.project-div strong,
+.education-div strong,
+.contact-div strong {
+  color: var(--primary-color);
+}

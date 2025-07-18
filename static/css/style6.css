@@ -1,0 +1,204 @@
+/* style7.css - Simple & Clean Text with Specific Colors (Updated for Skill Subheadings) */
+
+/* Root variables for easy customization */
+:root {
+    --primary-color: #333; /* Dark text (effectively black) */
+    --secondary-color: #555; /* Slightly lighter text, but still dark */
+    --accent-color: #007bff; /* Blue for main section titles and links */
+    --background-color: #ffffff; /* White background */
+    --border-color: #eee; /* Very light grey for subtle lines, if any are kept */
+    --font-family-body: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --font-family-heading: 'Montserrat', sans-serif; /* A modern sans-serif for headings */
+    --text-color: #333; /* Default text color */
+    --link-color: #007bff; /* Links remain blue for clarity */
+}
+
+body {
+    font-family: var(--font-family-body);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.portfolio-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff; /* Still white background */
+    padding: 30px;
+    /* Removed box-shadow for a clean look */
+    border-radius: 0; /* No rounded corners */
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color); /* Lighter border */
+}
+
+.header h1 {
+    font-family: var(--font-family-heading);
+    font-size: 3.5em; /* Larger name */
+    color: var(--primary-color); /* Black */
+    margin-bottom: 5px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.header p.introduction {
+    font-size: 1.1em;
+    color: var(--secondary-color); /* Darker grey/black */
+    max-width: 700px;
+    margin: 15px auto 0;
+    line-height: 1.8;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.95em;
+    color: var(--secondary-color); /* Darker grey/black */
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info li i {
+    margin-right: 8px;
+    color: var(--link-color); /* Icons can be blue like links */
+}
+
+.contact-info a {
+    color: var(--link-color); /* Blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--primary-color); /* Black on hover */
+    text-decoration: underline;
+}
+
+/* Main Section Styling */
+.section {
+    margin-bottom: 35px;
+    padding-top: 15px;
+}
+
+.section h2 {
+    font-family: var(--font-family-heading);
+    font-size: 2em;
+    color: var(--accent-color); /* Blue for main section titles */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color); /* Blue underline */
+    display: inline-block; /* Make border only as wide as text */
+}
+
+/* Item within sections (e.g., Work Experience, Projects) */
+.item {
+    margin-bottom: 25px;
+    padding-left: 0; /* No indent for items, keeps it clean */
+    border-left: none; /* No left border */
+}
+
+.item h3 {
+    font-size: 1.4em;
+    color: var(--primary-color); /* Black */
+    margin-bottom: 5px;
+}
+
+.item p.subtitle {
+    font-size: 1.05em;
+    color: var(--secondary-color); /* Darker grey/black */
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.item p.duration, .item p.location {
+    font-size: 0.95em;
+    color: var(--secondary-color); /* Darker grey/black */
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-style: normal; /* No italics */
+}
+
+.item ul {
+    list-style: disc; /* Keep bullet points for clarity */
+    margin-left: 25px;
+    padding: 0;
+    color: var(--text-color); /* Black */
+}
+
+.item ul li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Skills Section specific styles */
+.skill-category {
+    margin-bottom: 15px; /* Spacing between skill categories */
+}
+
+.skill-category-heading {
+    font-family: var(--font-family-body); /* Using body font for subheadings */
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--primary-color); /* Black for skill subheadings, as per screenshot */
+    margin-bottom: 5px; /* Space between subheading and skills list */
+    display: inline; /* Keep on same line as first skill if possible */
+}
+
+.skills-list {
+    display: inline; /* Keep items flowing with heading */
+    list-style: none;
+    padding: 0;
+    margin-left: 5px; /* Small indent from subheading */
+}
+
+.skill-div {
+    display: inline; /* Display inline to flow like text */
+    background-color: transparent; /* No background */
+    padding: 0; /* No padding */
+    border-radius: 0; /* No rounded corners */
+    border: none; /* No border */
+    font-size: 0.9em;
+    color: var(--primary-color); /* Black */
+    margin-right: 5px; /* Spacing between skills */
+}
+
+.skills-list li:not(:last-child)::after {
+    content: ','; /* Add comma after each skill except the last */
+    margin-right: 5px;
+}
+
+/* For better PDF export */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .portfolio-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+        border-radius: 0;
+    }
+    .section h2 {
+        border-bottom-color: var(--accent-color) !important;
+    }
+}

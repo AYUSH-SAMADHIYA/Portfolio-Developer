@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Generator Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;700&family=Lora:wght@400;500;700&family=Roboto+Mono:wght@400;500&family=Playfair+Display:wght@400;700&family=Oswald:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; }
+        .tab-button.active { background-color: #fff; color: #3b82f6; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .template-card { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border: 2px solid transparent; }
+        .template-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .template-card.selected { transform: translateY(-5px) scale(1.03); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2); border-color: #3b82f6; }
+        input[type="color"]{-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;border:none;background-color:transparent;}
+        input[type="color"]::-webkit-color-swatch-wrapper{padding:0;}
+        input[type="color"]::-webkit-color-swatch{border:none;border-radius:50%;}
+        input[type="color"]::-moz-color-swatch{border:none;border-radius:50%;}
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto px-4 py-12 md:py-20">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-400">Portfolio Generator</h1>
+            <p class="mt-4 text-lg text-gray-600">Instantly craft a professional portfolio, your way.</p>
+        </header>
+
+        <div class="max-w-2xl mx-auto mb-8 text-center">
+             <p class="text-gray-600 mb-4 font-medium">Quick Start: Import from GitHub</p>
+            <form action="/import/github_url" method="POST" class="flex items-center gap-2 bg-white p-2 rounded-lg shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-gray-400 ml-3" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                <input type="text" name="github_url" class="flex-grow p-2 border-none focus:ring-0 text-gray-700" placeholder="Paste a GitHub profile URL...">
+                <button type="submit" class="bg-gray-800 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-900 transition-colors">Import</button>
+            </form>
+        </div>
+
+        <div class="max-w-5xl mx-auto mb-4 flex p-1 bg-gray-200 rounded-lg">
+            <button class="tab-button w-1/2 p-3 rounded-md font-semibold transition-colors" onclick="switchTab(event, 'manual')">Manual Entry</button>
+            <button class="tab-button w-1/2 p-3 rounded-md font-semibold transition-colors active" onclick="switchTab(event, 'ai')">AI Prompt</button>
+        </div>
+
+        <form action="/" method="POST" class="form-container bg-white p-8 md:p-10 rounded-2xl shadow-2xl max-w-5xl mx-auto">
+            
+            <div id="manual-content" class="tab-content">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Enter Your Details Manually</h2>
+                <div class="space-y-8">
+                    <div><label class="block text-lg font-medium text-gray-700 mb-2">Full Name</label><input type="text" name="name" class="w-full p-3 bg-gray-50 border rounded-lg" placeholder="e.g., Alex Chen"></div>
+                    <div><label class="block text-lg font-medium text-gray-700 mb-2">Introduction / Bio</label><textarea name="introduction" rows="4" class="w-full p-3 bg-gray-50 border rounded-lg" placeholder="A brief summary about yourself..."></textarea></div>
+                    <div><label class="block text-lg font-medium text-gray-700 mb-2">Contact Info (comma-separated)</label><input type="text" name="contacts" class="w-full p-3 bg-gray-50 border rounded-lg" placeholder="e.g., Email - alex@example.com, Phone - 123-456-7890"></div>
+                    <div><label class="block text-lg font-medium text-gray-700 mb-2">Skills (comma-separated)</label><input type="text" name="skills" class="w-full p-3 bg-gray-50 border rounded-lg" placeholder="e.g., Python, React, SQL, AWS"></div>
+                    <div id="dynamic-sections">
+                        <div id="experience-section" class="space-y-4"><label class="block text-lg font-medium text-gray-700">Work Experience</label></div><button type="button" onclick="addDynamicField('experience')" class="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800">+ Add Experience</button>
+                        <div id="projects-section" class="space-y-4 mt-8"><label class="block text-lg font-medium text-gray-700">Projects</label></div><button type="button" onclick="addDynamicField('projects')" class="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800">+ Add Project</button>
+                        <div id="education-section" class="space-y-4 mt-8"><label class="block text-lg font-medium text-gray-700">Education</label></div><button type="button" onclick="addDynamicField('education')" class="mt-2 text-sm font-medium text-blue-600 hover:text-blue-800">+ Add Education</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ai-content" class="tab-content active">
+                <div class="flex justify-between items-center mb-4"><label for="prompt" class="block text-2xl font-semibold text-gray-800">Describe Your Profile with AI</label><button type="button" onclick="populateExample()" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">✨ Use Example</button></div>
+                <textarea id="prompt" name="prompt" rows="12" class="w-full p-4 bg-gray-50 border rounded-lg" placeholder="Start with your name, skills, projects, and education...">{{ prompt_data or '' }}</textarea>
+            </div>
+
+            <div class="mt-12 border-t pt-8">
+                <h3 class="block text-2xl font-semibold mb-6 text-gray-800">Customization</h3>
+                <div class="space-y-8">
+                    <div>
+                        <label class="block text-lg font-medium text-gray-700 mb-4">Template Style</label>
+                        <div id="template-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                            </div>
+                        <input type="hidden" name="css_file" id="selected_template" value="style1.css">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-lg font-medium text-gray-700 mb-4">Colors</label>
+                            <div class="flex items-center gap-8">
+                                <div class="relative group" title="Main theme color">
+                                    <label class="block text-center mb-2 font-medium">Primary</label>
+                                    <div class="w-16 h-16 p-1 bg-white rounded-full shadow-lg transition-transform duration-200 group-hover:scale-110">
+                                        <input type="color" name="primary_color" value="#2c3e50" class="w-full h-full rounded-full cursor-pointer">
+                                    </div>
+                                </div>
+                                <div class="relative group" title="Text on primary color">
+                                    <label class="block text-center mb-2 font-medium">Text</label>
+                                    <div class="w-16 h-16 p-1 bg-white rounded-full shadow-lg transition-transform duration-200 group-hover:scale-110">
+                                        <input type="color" name="secondary_color" value="#ecf0f1" class="w-full h-full rounded-full cursor-pointer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="font_family" class="block text-lg font-medium text-gray-700 mb-4">Font Style</label>
+                            <select name="font_family" class="w-full p-3 bg-gray-50 border rounded-lg">
+                                <option value="'Poppins', sans-serif">Poppins</option>
+                                <option value="'Inter', sans-serif">Inter</option>
+                                <option value="'Lora', serif">Lora</option>
+                                <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                                <option value="'Playfair Display', serif">Playfair Display</option>
+                                <option value="'Oswald', sans-serif">Oswald</option>
+                                <option value="'Nunito', sans-serif">Nunito</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 rounded-lg hover:shadow-xl transition-all text-xl">Generate My Portfolio</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function switchTab(event, tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`${tabName}-content`).classList.add('active');
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            const isManual = tabName === 'manual';
+            document.getElementById('prompt').disabled = isManual;
+            document.querySelectorAll('#manual-content input, #manual-content textarea').forEach(el => el.disabled = !isManual);
+        }
+        function addDynamicField(type) {
+            const container = document.getElementById(`${type}-section`);
+            const div = document.createElement('div');
+            div.className = 'p-4 border rounded-lg relative bg-gray-50';
+            div.innerHTML = `<input type="text" name="${type}_headings" class="w-full font-semibold border-b p-1 mb-2 bg-transparent focus:outline-none" placeholder="${type.charAt(0).toUpperCase() + type.slice(1)} Title / Heading"><textarea name="${type}_details" rows="3" class="w-full p-1 bg-transparent focus:outline-none" placeholder="Details..."></textarea><button type="button" onclick="this.parentElement.remove()" class="absolute top-2 right-2 text-xl text-red-400 hover:text-red-600">&times;</button>`;
+            container.appendChild(div);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the default tab to 'ai'
+            switchTab({target: document.querySelector('.tab-button.active')}, 'ai');
+            
+            const templates = ['style1.css', 'style2.css', 'style3.css', 'style4.css', 'style5.css', 'style6.css']; 
+            const container = document.getElementById('template-container');
+            templates.forEach((template, index) => {
+                const card = document.createElement('div');
+                card.className = 'template-card bg-white rounded-lg shadow-md cursor-pointer overflow-hidden';
+                // Set the first template as selected by default
+                if (index === 0) card.classList.add('selected');
+                
+                const imageName = `style${index + 1}.png`;
+                card.innerHTML = `<img src="/static/images/thumbnails/${imageName}" onerror="this.src='https://placehold.co/400x300/f0f2f5/333?text=Style+${index + 1}'" class="w-full h-auto object-cover aspect-[4/3]"><div class="p-2 text-center text-xs font-medium">${template.replace('.css','')}</div>`;
+                card.addEventListener('click', () => {
+                    document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    document.getElementById('selected_template').value = template;
+                });
+                container.appendChild(card);
+            });
+
+            // If imported data exists, ensure the 'ai' tab is active
+            if (document.getElementById('prompt').value.trim() !== '') {
+                switchTab({target: document.querySelector('.tab-button.active')}, 'ai');
+            }
+
+            // --- localStorage for AI Prompt ---
+            const aiPromptTextarea = document.getElementById('prompt');
+
+            // Load saved prompt on page load
+            const savedPrompt = localStorage.getItem('aiPrompt');
+            if (savedPrompt) {
+                aiPromptTextarea.value = savedPrompt;
+                // If there's a saved prompt, ensure AI tab is active
+                switchTab({target: document.querySelector('button[onclick="switchTab(event, \'ai\')"]')}, 'ai');
+            } else if (aiPromptTextarea.value.trim() !== '') {
+                // If no local storage but server provided data, save it to local storage
+                localStorage.setItem('aiPrompt', aiPromptTextarea.value);
+            }
+            
+            // Save prompt on input
+            aiPromptTextarea.addEventListener('input', function() {
+                localStorage.setItem('aiPrompt', this.value);
+            });
+            // --- End localStorage for AI Prompt ---
+
+        });
+        function populateExample() {
+            const examplePrompt = `Hi, I'm Alex Chen — a passionate and results-driven full-stack developer with over 5 years of professional experience crafting dynamic, high-performance web applications. My expertise lies in Python, JavaScript, and Java, and I enjoy working across both frontend and backend technologies. I have a strong foundation in building scalable APIs using Django and Flask, and creating user-friendly interfaces with modern frameworks like React and Vue. I’m deeply familiar with relational and non-relational databases like PostgreSQL, MongoDB, and MySQL, and I frequently deploy projects using Docker, AWS, and CI/CD pipelines.
+
+I’ve interned at top tech companies like Airbnb (as a Software Engineering Intern in San Francisco) where I helped optimize API performance for the Payments team, and at Slack (as a Backend Developer Intern), where I contributed to microservices for real-time analytics using Kafka and Flask. I have also led and contributed to several impactful projects:
+
+ShopSphere – A robust e-commerce platform with inventory tracking, authentication, admin dashboard, and smart recommendations.
+
+DataDash – A financial dashboard for visualizing large-scale data trends, using Django REST and React.
+
+LearnHub – An online course platform with video content, progress tracking, quizzes, and certificate generation.
+
+TravelMate – An AI-powered travel planner that suggests destinations, hotels, and personalized itineraries using third-party APIs.
+
+I graduated from the University of California, Berkeley with a B.Sc. in Computer Science. During my time there, I took courses in Machine Learning, Distributed Systems, and Advanced Web Development, and was a member of ACM and the Berkeley Developers Club.
+
+Please generate a modern, visually appealing personal portfolio based on this data. Highlight my work experience, projects, technical skills, and education in an engaging format suitable for recruiters and clients.`;
+            document.getElementById('prompt').value = examplePrompt;
+            localStorage.setItem('aiPrompt', examplePrompt); // Also save example to local storage
+            switchTab({target: document.querySelector('.tab-button.active')}, 'ai');
+        }
+    </script>
+</body>
+</html>
