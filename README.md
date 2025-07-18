@@ -80,7 +80,7 @@ portfolio-generator/
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio-developer.git
+   git clone https://github.com/AYUSH-SAMADHIYA/Portfolio-Developer
    cd portfolio-developer
    ```
 2. **Create a virtual environment (recommended)**
